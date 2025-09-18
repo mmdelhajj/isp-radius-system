@@ -31,6 +31,12 @@ If you encounter permission errors during installation:
 wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fix_installation.sh && chmod +x fix_installation.sh && ./fix_installation.sh
 ```
 
+### Fix Current Installation (For Specific Errors)
+If you encounter directory permission, database constraint, or sed command errors:
+```bash
+wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fix_current_installation.sh && chmod +x fix_current_installation.sh && ./fix_current_installation.sh
+```
+
 ### Manual Installation
 See [Installation Guide](docs/installation-guide.md) for detailed step-by-step instructions.
 
@@ -83,6 +89,7 @@ The system comes with 5 pre-configured service plans:
 
 - [Installation Guide](docs/installation-guide.md) - Complete setup instructions
 - [Troubleshooting Guide](docs/troubleshooting_guide.md) - Fix common installation issues
+- [Common Errors Guide](docs/common-errors.md) - Specific error fixes and solutions
 - [Configuration Guide](docs/configuration-guide.md) - System configuration
 - [User Manual](docs/user-manual.md) - Web interface usage
 - [API Documentation](docs/api-documentation.md) - Backend API reference
