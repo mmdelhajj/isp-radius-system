@@ -43,7 +43,7 @@ sudo apt update && sudo apt upgrade -y
 # Install required packages
 log "Installing required packages..."
 sudo apt install -y postgresql postgresql-contrib freeradius freeradius-postgresql \
-    redis-server nginx php8.1-fpm php8.1-pgsql php8.1-curl php8.1-json \
+    redis-server nginx php8.1-fpm php8.1-pgsql php8.1-curl php8.1-cli \
     python3 python3-pip python3-venv curl wget git
 
 # Configure PostgreSQL
