@@ -14,19 +14,26 @@ A complete, production-ready ISP RADIUS authentication and billing management sy
 - **Reports & Analytics** - Business intelligence and performance metrics
 - **System Settings** - Complete configuration management
 
-## 🚀 Quick Installation Commands
+## 🚀 One-Command Installation
 
-**For Fresh Installation (Recommended):**
+**Complete System Installation (Everything Included):**
+```bash
+wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/complete_fresh_install.sh && chmod +x complete_fresh_install.sh && ./complete_fresh_install.sh
+```
+
+**Alternative Installation Commands:**
+
+**RADIUS System Only:**
 ```bash
 wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fresh_install_v2.sh && chmod +x fresh_install_v2.sh && ./fresh_install_v2.sh
 ```
 
-**Install Admin Dashboard:**
+**Admin Dashboard Only:**
 ```bash
 wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/create_admin_dashboard.sh && chmod +x create_admin_dashboard.sh && ./create_admin_dashboard.sh
 ```
 
-**To Fix Installation Issues:**
+**Fix Installation Issues:**
 ```bash
 wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fix_current_installation.sh && chmod +x fix_current_installation.sh && ./fix_current_installation.sh
 ```
