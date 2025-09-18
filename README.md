@@ -2,29 +2,36 @@
 
 Complete production-ready ISP RADIUS & Billing Management System with fully functional admin dashboard.
 
-## 🚀 Ultimate One-Command Installation
+## 🚀 FRESH INSTALLATION - ONE COMMAND
 
-**Complete System Installation (EVERYTHING INCLUDED):**
+**Install Complete System (EVERYTHING INCLUDED):**
 ```bash
 wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/complete_all_in_one_install.sh && chmod +x complete_all_in_one_install.sh && ./complete_all_in_one_install.sh
 ```
 
-This single command installs:
-- ✅ PostgreSQL Database with complete schema
-- ✅ FreeRADIUS Server with SQL integration  
-- ✅ Redis Cache for performance
-- ✅ Nginx Web Server
-- ✅ Complete Functional Admin Dashboard
-- ✅ All service profiles and demo data
-- ✅ Systemd services and auto-startup
-- ✅ Firewall configuration
-- ✅ Production-ready deployment
+**If RADIUS Authentication Fails (Access-Reject Error):**
+```bash
+wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fix_radius_auth.sh && chmod +x fix_radius_auth.sh && ./fix_radius_auth.sh
+```
 
-## 🎯 What You Get
+## ✅ What This Single Command Installs:
+
+- ✅ **PostgreSQL Database** - Complete schema with all tables and demo data
+- ✅ **FreeRADIUS Server** - Industry-standard authentication with SQL integration  
+- ✅ **Redis Cache** - Performance optimization and session management
+- ✅ **Nginx Web Server** - Production-grade web server with security headers
+- ✅ **Complete Admin Dashboard** - Fully functional customer management interface
+- ✅ **5 Service Profiles** - Pre-configured internet plans (Student to Business)
+- ✅ **Automated Billing System** - Invoice generation and payment tracking
+- ✅ **Systemd Services** - Auto-startup and production deployment
+- ✅ **Firewall Configuration** - Security rules and access control
+- ✅ **Complete Testing** - Verification of all components
+
+## 🎯 PRODUCTION-READY FEATURES
 
 ### Complete ISP Management System
 - **Customer Management** - Add, delete, modify customers with full CRUD operations
-- **Service Profiles** - 5 pre-configured internet plans (Student to Business)
+- **Service Profiles** - 5 pre-configured internet plans with bandwidth controls
 - **NAS Device Management** - Configure and monitor network equipment
 - **Billing System** - Automated invoicing and payment tracking
 - **Online Users Monitoring** - Real-time session tracking and disconnect capabilities
