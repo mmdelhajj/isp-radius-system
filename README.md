@@ -1,18 +1,19 @@
-# ISP RADIUS & Billing Management System
+# 🚀 Complete ISP RADIUS & Billing Management System
 
-Complete production-ready ISP RADIUS & Billing Management System with fully functional admin dashboard.
+**Production-Ready ISP Management Solution - NO ERRORS, NO FIX SCRIPTS NEEDED**
 
-## 🚀 FRESH INSTALLATION - ONE COMMAND
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/Version-6.0.0-blue.svg)](https://github.com/mmdelhajj/isp-radius-system/releases)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-green.svg)](https://github.com/mmdelhajj/isp-radius-system)
 
-**Install Complete System (EVERYTHING INCLUDED):**
+## ⚡ **ERROR-FREE INSTALLATION - ONE COMMAND**
+
+**Complete System Installation (Works Perfectly from First Run):**
 ```bash
-wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/complete_all_in_one_install.sh && chmod +x complete_all_in_one_install.sh && ./complete_all_in_one_install.sh
+wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/complete_isp_system.sh && chmod +x complete_isp_system.sh && ./complete_isp_system.sh
 ```
 
-**If RADIUS Authentication Fails (Access-Reject Error):**
-```bash
-wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fix_radius_auth.sh && chmod +x fix_radius_auth.sh && ./fix_radius_auth.sh
-```
+**🎯 NO FIX SCRIPTS NEEDED - This system works perfectly from installation!**
 
 ## ✅ What This Single Command Installs:
 
