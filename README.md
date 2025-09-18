@@ -125,6 +125,22 @@ The installation script will:
 
 ## 🔧 Troubleshooting
 
+### RADIUS Authentication Issues (Access-Reject Error)
+
+If you see `Expected Access-Accept got Access-Reject` during installation:
+
+**Quick Fix:**
+```bash
+wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fix_radius_auth.sh && chmod +x fix_radius_auth.sh && ./fix_radius_auth.sh
+```
+
+**Manual Debug:**
+```bash
+sudo systemctl stop freeradius
+sudo freeradius -X  # Debug mode
+# Test in another terminal: echo "User-Name = testuser, User-Password = testpass" | radclient localhost:1812 auth testing123
+```
+
 ### Common Issues
 
 **Database Connection Error:**
@@ -150,13 +166,19 @@ sudo systemctl status nginx isp-admin
 wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fix_current_installation.sh && chmod +x fix_current_installation.sh && ./fix_current_installation.sh
 ```
 
+### Complete Troubleshooting Guide
+See [RADIUS Authentication Troubleshooting](docs/radius-authentication-troubleshooting.md) for comprehensive solutions.
+
 ## 📖 Documentation
 
-- **Installation Guide** - Complete setup instructions
-- **User Manual** - Admin dashboard usage
-- **API Documentation** - Integration endpoints
-- **Business Plan** - ISP business strategy
-- **Technical Architecture** - System design details
+- **[Installation Guide](docs/complete-installation-guide.md)** - Complete setup instructions
+- **[RADIUS Troubleshooting](docs/radius-authentication-troubleshooting.md)** - Fix authentication issues
+- **[Admin Dashboard Guide](docs/admin-dashboard-guide.md)** - Admin dashboard usage
+- **[Common Errors Guide](docs/common-errors.md)** - Installation error solutions
+- **[User Manual](docs/)** - Complete system usage guide
+- **[API Documentation](docs/)** - Integration endpoints
+- **[Business Plan](docs/)** - ISP business strategy
+- **[Technical Architecture](docs/)** - System design details
 
 ## 🚀 Production Deployment
 
