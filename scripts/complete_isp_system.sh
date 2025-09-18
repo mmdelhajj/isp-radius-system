@@ -64,7 +64,11 @@ EOF
 
 # Import FreeRADIUS schema
 log "Importing FreeRADIUS schema..."
-sudo -u postgres psql radiusdb < /etc/freeradius/3.0/mods-config/sql/main/postgresql/schema.sql
+# Fix permission issue by copying to accessible location
+sudo cp /etc/freeradius/3.0/mods-config/sql/main/postgresql/schema.sql /tmp/radius_schema.sql
+sudo chmod 644 /tmp/radius_schema.sql
+sudo -u postgres psql radiusdb < /tmp/radius_schema.sql
+sudo rm -f /tmp/radius_schema.sql
 
 # Create ISP management tables
 log "Creating ISP management tables..."
