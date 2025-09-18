@@ -62,17 +62,104 @@ ALTER USER radiususer CREATEDB;
 \q
 EOF
 
-# Import FreeRADIUS schema
-log "Importing FreeRADIUS schema..."
-# Fix permission issue by copying to accessible location
-sudo cp /etc/freeradius/3.0/mods-config/sql/main/postgresql/schema.sql /tmp/radius_schema.sql
-sudo chmod 644 /tmp/radius_schema.sql
-sudo -u postgres psql radiusdb < /tmp/radius_schema.sql
-sudo rm -f /tmp/radius_schema.sql
+# Create FreeRADIUS and ISP management tables directly
+log "Creating FreeRADIUS and ISP management tables..."
+sudo -u postgres psql radiusdb << 'EOF'
+-- FreeRADIUS Tables (Direct SQL instead of schema file)
+CREATE TABLE IF NOT EXISTS radacct (
+    radacctid BIGSERIAL PRIMARY KEY,
+    acctsessionid VARCHAR(64) NOT NULL DEFAULT '',
+    acctuniqueid VARCHAR(32) NOT NULL DEFAULT '',
+    username VARCHAR(64) NOT NULL DEFAULT '',
+    groupname VARCHAR(64) NOT NULL DEFAULT '',
+    realm VARCHAR(64) DEFAULT '',
+    nasipaddress INET NOT NULL,
+    nasportid VARCHAR(15) DEFAULT NULL,
+    nasporttype VARCHAR(32) DEFAULT NULL,
+    acctstarttime TIMESTAMP with time zone NULL DEFAULT NULL,
+    acctupdatetime TIMESTAMP with time zone NULL DEFAULT NULL,
+    acctstoptime TIMESTAMP with time zone NULL DEFAULT NULL,
+    acctinterval BIGINT DEFAULT NULL,
+    acctsessiontime BIGINT DEFAULT NULL,
+    acctauthentic VARCHAR(32) DEFAULT NULL,
+    connectinfo_start VARCHAR(50) DEFAULT NULL,
+    connectinfo_stop VARCHAR(50) DEFAULT NULL,
+    acctinputoctets BIGINT DEFAULT NULL,
+    acctoutputoctets BIGINT DEFAULT NULL,
+    calledstationid VARCHAR(50) NOT NULL DEFAULT '',
+    callingstationid VARCHAR(50) NOT NULL DEFAULT '',
+    acctterminatecause VARCHAR(32) NOT NULL DEFAULT '',
+    servicetype VARCHAR(32) DEFAULT NULL,
+    framedprotocol VARCHAR(32) DEFAULT NULL,
+    framedipaddress INET DEFAULT NULL
+);
 
-# Create ISP management tables
-log "Creating ISP management tables..."
-sudo -u postgres psql radiusdb << EOF
+CREATE TABLE IF NOT EXISTS radcheck (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(64) NOT NULL DEFAULT '',
+    attribute VARCHAR(64) NOT NULL DEFAULT '',
+    op CHAR(2) NOT NULL DEFAULT '==',
+    value VARCHAR(253) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE IF NOT EXISTS radreply (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(64) NOT NULL DEFAULT '',
+    attribute VARCHAR(64) NOT NULL DEFAULT '',
+    op CHAR(2) NOT NULL DEFAULT '=',
+    value VARCHAR(253) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE IF NOT EXISTS radgroupcheck (
+    id SERIAL PRIMARY KEY,
+    groupname VARCHAR(64) NOT NULL DEFAULT '',
+    attribute VARCHAR(64) NOT NULL DEFAULT '',
+    op CHAR(2) NOT NULL DEFAULT '==',
+    value VARCHAR(253) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE IF NOT EXISTS radgroupreply (
+    id SERIAL PRIMARY KEY,
+    groupname VARCHAR(64) NOT NULL DEFAULT '',
+    attribute VARCHAR(64) NOT NULL DEFAULT '',
+    op CHAR(2) NOT NULL DEFAULT '=',
+    value VARCHAR(253) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE IF NOT EXISTS radusergroup (
+    username VARCHAR(64) NOT NULL DEFAULT '',
+    groupname VARCHAR(64) NOT NULL DEFAULT '',
+    priority INTEGER NOT NULL DEFAULT 1
+);
+
+CREATE TABLE IF NOT EXISTS radpostauth (
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(64) NOT NULL DEFAULT '',
+    pass VARCHAR(64) NOT NULL DEFAULT '',
+    reply VARCHAR(32) NOT NULL DEFAULT '',
+    authdate TIMESTAMP with time zone NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS nas (
+    id SERIAL PRIMARY KEY,
+    nasname VARCHAR(128) NOT NULL,
+    shortname VARCHAR(32),
+    type VARCHAR(30) DEFAULT 'other',
+    ports INTEGER,
+    secret VARCHAR(60) NOT NULL DEFAULT 'secret',
+    server VARCHAR(64),
+    community VARCHAR(50),
+    description VARCHAR(200) DEFAULT 'RADIUS Client'
+);
+
+-- Create indexes for performance
+CREATE INDEX IF NOT EXISTS radacct_username_idx ON radacct (username);
+CREATE INDEX IF NOT EXISTS radacct_session_idx ON radacct (acctsessionid);
+CREATE INDEX IF NOT EXISTS radcheck_username_idx ON radcheck (username);
+CREATE INDEX IF NOT EXISTS radreply_username_idx ON radreply (username);
+CREATE INDEX IF NOT EXISTS radgroupcheck_groupname_idx ON radgroupcheck (groupname);
+CREATE INDEX IF NOT EXISTS radgroupreply_groupname_idx ON radgroupreply (groupname);
+CREATE INDEX IF NOT EXISTS radusergroup_username_idx ON radusergroup (username);
 -- Service Profiles Table
 CREATE TABLE IF NOT EXISTS service_profiles (
     id SERIAL PRIMARY KEY,
