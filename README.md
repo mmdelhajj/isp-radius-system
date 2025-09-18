@@ -20,9 +20,15 @@ A complete, production-ready ISP RADIUS authentication and billing management sy
 
 ## 🚀 Quick Start
 
-### One-Command Installation
+### One-Command Installation (Fixed Version)
 ```bash
-wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/quick_install.sh && chmod +x quick_install.sh && ./quick_install.sh
+wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/quick_install_fixed.sh && chmod +x quick_install_fixed.sh && ./quick_install_fixed.sh
+```
+
+### Fix Installation Issues
+If you encounter permission errors during installation:
+```bash
+wget https://raw.githubusercontent.com/mmdelhajj/isp-radius-system/main/scripts/fix_installation.sh && chmod +x fix_installation.sh && ./fix_installation.sh
 ```
 
 ### Manual Installation
@@ -76,10 +82,10 @@ The system comes with 5 pre-configured service plans:
 ## 📚 Documentation
 
 - [Installation Guide](docs/installation-guide.md) - Complete setup instructions
+- [Troubleshooting Guide](docs/troubleshooting_guide.md) - Fix common installation issues
 - [Configuration Guide](docs/configuration-guide.md) - System configuration
 - [User Manual](docs/user-manual.md) - Web interface usage
 - [API Documentation](docs/api-documentation.md) - Backend API reference
-- [Troubleshooting](docs/troubleshooting.md) - Common issues and solutions
 
 ## 🔧 Configuration
 
